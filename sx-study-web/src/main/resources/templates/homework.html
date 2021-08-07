@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>舒心 holiday homework</title>
+
+    <style>
+        @page {
+            size: 210mm 297mm; /*设置纸张大小:A4(210mm 297mm)、A3(297mm 420mm) 横向则反过来*/
+            margin: 0.25in;
+            padding: 1em;
+            @bottom-center{
+                content:"MelonKid © 版权所有";
+                font-family: SimSun;
+                font-size: 12px;
+                color:red;
+            };
+            @top-center { content: element(header) };
+            @bottom-right{
+                content:"第" counter(page) "页  共 " counter(pages) "页";
+                font-family: SimSun;
+                font-size: 12px;
+                color:#000;
+            };
+        }
+
+        body{font-family: 'SimSun'}
+    </style>
+</head>
+
+<body>
+    <!--// 每日一言 -->
+    <table width="100%" style="font-size:25px">
+        <tr style="text-align: left;margin-left: 10px;"><th colspan="5">每日一言:</th></tr>
+        <tr>
+            <td  valign="top" style="font-size: 18px;">
+                <div style="width: 80%;margin-left: 10px;">
+                    <div>
+                        <div th:text="${cibaOneWord.noteWithPinyin}"></div>
+                    </div>
+                    <br/>
+                    <div>
+                        <div align="right" th:text="'————'+${cibaOneWord.dateline}"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!--// 20道随机口算题 -->
+    <table width="100%" style="font-size:25px">
+        <tr style="text-align: left;margin-left: 10px;"><th colspan="5">口算题20道:</th></tr>
+        <tr  th:each="caculate,caculateStat : ${homework.calculateLines}">
+            <td th:each="expression,expressionStat : ${caculate.expressions}" th:text="${expression}"></td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <!--// 分解式10道 -->
+    <table width="100%" style="font-size:25px;border-collapse: collapse;">
+        <tr style="text-align: left;margin-left: 10px;"><th colspan="5">分解式10道:</th></tr>
+        <tr  style="border-bottom: 1px solid black;" th:each="separete,caculateStat : ${homework.separeteLines}">
+            <td style="border-bottom: 1px solid black;" th:each="expression,expressionStat : ${separete.expressions}"
+                th:utext="${expression}"></td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <!--// 列竖式10道 -->
+    <table width="100%" style="font-size:25px;border-collapse: collapse;">
+        <tr style="text-align: left;margin-left: 10px;"><th colspan="5">列竖式10道:</th></tr>
+        <tr  style="border-bottom: 1px solid black;" th:each="vertical,caculateStat : ${homework.verticalLines}">
+            <td style="border-bottom: 1px solid black;" th:each="expression,expressionStat : ${vertical.expressions}"
+                th:utext="${expression}"></td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+    <!--// 圆角分10道 -->
+    <table width="100%" style="font-size:25px;border-collapse: collapse;">
+        <tr style="text-align: left;margin-left: 10px;"><th colspan="5">元角分10道:</th></tr>
+        <tr style="font-size:22px;border-bottom: 1px solid #151313;"
+            th:each="unitSwitch,separateStat : ${homework.unitSwitchLines}">
+            <td th:each="expression,expressionStat : ${unitSwitch.expressions}" th:utext="${expression}"></td>
+        </tr>
+    </table>
+
+</body>
+</html>
