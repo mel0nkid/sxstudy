@@ -1,4 +1,6 @@
 /**
+ * 金山词霸服务
+ *
  * MelonKid.
  * Copyright (c) 2004-2019 All Rights Reserved.
  */
@@ -10,5 +12,5 @@ package com.melon.sx.study.onew;
  */
 public interface CibaService {
 
-    CibaOwRet get();
+    CibaOwRet get(String date);
 }

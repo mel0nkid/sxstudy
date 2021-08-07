@@ -26,11 +26,6 @@ public class HelloController {
     return "hello world!";
   }
 
-  @RequestMapping("/helloCb")
-  @ResponseBody
-  public CibaOwRet helloCb() {
-    return cibaService.get();
-  }
 
   @RequestMapping("/helloth")
   public String hello(

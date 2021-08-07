@@ -2,7 +2,9 @@ package com.melon.sx.study;
 
 import com.melon.sx.study.onew.CibaOwRet;
 import com.melon.sx.study.onew.CibaService;
+import com.melon.sx.study.util.DateUtil;
 import com.melon.sx.study.util.PDFUtil;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +41,7 @@ public class PDFController {
     List<Map<String, Object>> listVars = new ArrayList<>();
     Map<String, Object> homeworkVars = new HashMap<>(8);
     homeworkVars.put("homework", generateMathService.generate());
-    homeworkVars.put("cibaOneWord", cibaService.get());
+    homeworkVars.put("cibaOneWord", cibaService.get(DateUtil.formatSimple(new Date())));
     listVars.add(homeworkVars);
 
     PDFUtil.preview(templateEngine, "homework", listVars, response);
