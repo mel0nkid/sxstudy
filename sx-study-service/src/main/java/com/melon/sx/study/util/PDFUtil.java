@@ -74,7 +74,7 @@ public class PDFUtil {
     // 设置字符集(宋体),此处必须与模板中的<body style="font-family: SimSun">一致,区分大小写,不能写成汉字"宋体"
     ITextFontResolver fontResolver = renderer.getFontResolver();
     // 避免中文为空设置系统字体
-    fontResolver.addFont("static/fonts/simsun.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+    fontResolver.addFont("/static/fonts/simsun.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
     // 根据参数集个数循环调用模板,追加到同一个pdf文档中
     // (注意:此处从1开始,因为第0是创建pdf,从1往后则向pdf中追加内容)

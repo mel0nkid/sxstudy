@@ -23,7 +23,7 @@ public class HomeworkController {
   @Autowired private CibaService cibaService;
 
   @RequestMapping("/generate")
-  public String generate(HttpServletRequest request,  @RequestParam(value = "date") String date) {
+  public String generate(HttpServletRequest request, String date) {
     if(StringUtils.isBlank(date)) {
       date = DateUtil.formatSimple(new Date());
     }
