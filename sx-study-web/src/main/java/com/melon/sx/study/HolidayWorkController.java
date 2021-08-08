@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HolidayWorkController {
 
     @RequestMapping("/work")
-    public String hello() {
+    public String work() {
         return "holidaywork";
+    }
+
+    @RequestMapping("/pdf")
+    public String pdf() {
+        return "pdf";
     }
 }

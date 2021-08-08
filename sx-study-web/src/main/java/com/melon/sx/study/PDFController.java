@@ -5,9 +5,11 @@ import com.melon.sx.study.onew.CibaService;
 import com.melon.sx.study.util.DateUtil;
 import com.melon.sx.study.util.PDFUtil;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.TemplateEngine;
 
@@ -37,11 +39,15 @@ public class PDFController {
    * @param response HttpServletResponse
    */
   @GetMapping(value = "/preview")
-  public void preview(HttpServletResponse response) {
+  public void preview(HttpServletResponse response,  @RequestParam(value = "date") String date) {
+    if(StringUtils.isBlank(date)) {
+      date = DateUtil.formatSimple(new Date());
+    }
+
     List<Map<String, Object>> listVars = new ArrayList<>();
     Map<String, Object> homeworkVars = new HashMap<>(8);
     homeworkVars.put("homework", generateMathService.generate());
-    homeworkVars.put("cibaOneWord", cibaService.get(DateUtil.formatSimple(new Date())));
+    homeworkVars.put("cibaOneWord", cibaService.get(date));
     listVars.add(homeworkVars);
 
     PDFUtil.preview(templateEngine, "homework", listVars, response);
