@@ -6,7 +6,7 @@
  */
 package com.melon.sx.study.onew;
 
-import com.alibaba.fastjson.JSON;
+import cn.melonkid.commons.lang.parser.JSONUtil;
 import com.melon.sx.study.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -27,8 +27,7 @@ public class CibaServiceImpl implements CibaService {
     public CibaOwRet get(String date) {
         // 远程调用，获取每日一言
         String result = HttpUtil.doGet(ciBaApi + date);
-        CibaOwRet cibaOwRet = JSON.parseObject(result, CibaOwRet.class);
-
+        CibaOwRet cibaOwRet = JSONUtil.fromJSON(result, CibaOwRet.class);
         // 设置日期
         cibaOwRet.setDateline(date);
 

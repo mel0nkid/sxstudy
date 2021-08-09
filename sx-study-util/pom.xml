@@ -28,8 +28,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
 
         <dependency>
@@ -38,7 +38,7 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.melon</groupId>
+            <groupId>cn.melonkid</groupId>
             <artifactId>melon-commons-lang</artifactId>
         </dependency>
     </dependencies>
