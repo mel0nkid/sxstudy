@@ -27,8 +27,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baidu.aip</groupId>
-            <artifactId>java-sdk</artifactId>
+            <groupId>com.melon.sx</groupId>
+            <artifactId>sx-study-dao</artifactId>
         </dependency>
     </dependencies>
 
