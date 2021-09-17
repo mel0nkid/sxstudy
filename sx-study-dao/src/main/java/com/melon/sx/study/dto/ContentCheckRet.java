@@ -42,11 +42,10 @@ public class ContentCheckRet {
         checkRet.conclusion = jsonObject.getString("conclusion");
         List<ContentCheckHit> contentCheckHits = new ArrayList<>();
         checkRet.setContentCheckHits(contentCheckHits);
-        JSONArray datas = jsonObject.getJSONArray("data");
-        if (datas == null) {
+        if(!jsonObject.has("data")){
             return checkRet;
         }
-
+        JSONArray datas = jsonObject.getJSONArray("data");
         Iterator<Object> datasIt = datas.iterator();
         while (datasIt.hasNext()) {
             ContentCheckHit contentCheckHit = new ContentCheckHit();
