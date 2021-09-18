@@ -37,4 +37,10 @@ public class SensitiveWordDomain {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public String toString() {
+        return "SensitiveWordDomain{" + "id=" + id + ", word='" + word + '\'' + ", msg='" + msg
+            + '\'' + '}';
+    }
 }

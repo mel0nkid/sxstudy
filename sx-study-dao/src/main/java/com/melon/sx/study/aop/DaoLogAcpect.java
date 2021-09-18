@@ -22,13 +22,13 @@ public class DaoLogAcpect {
 
     private Logger logger = LoggerFactory.getLogger(DaoLogAcpect.class);
 
-    private static final String PREFIX = "query[{}]";
     private static final String RET_PREFIX = "ret={}";
 
     /**
      * 定义切入点，切入点为com.example.aop下的所有函数
      */
-    @Pointcut("execution(public * com.melon.sx.study.dao..*.*(..))")
+    @Pointcut("execution(public * com.melon.sx.study.dao..*.*(..))"
+        + "||execution(public * com.melon.sx.study.mapper..*.*(..))")
     public void daoLog() {
     }
 
@@ -37,11 +37,10 @@ public class DaoLogAcpect {
     /**
      * 前置通知：在连接点之前执行的通知
      *
-     * @param joinPoint
      * @throws Throwable
      */
     @Before("daoLog()")
-    public void doBefore(JoinPoint joinPoint) throws Throwable {
+    public void doBefore() throws Throwable {
         // 接收到请求，记录请求内容
         startTimestamp = System.currentTimeMillis();
     }
@@ -55,11 +54,10 @@ public class DaoLogAcpect {
         // time cost
         long cost = System.currentTimeMillis() - startTimestamp;
         if (args == null || args.length < 1) {
-            logger.info(PREFIX + "args:[empty...][{}]" + RET_PREFIX, name, ret, cost);
+            logger.info("{}|{}|{}", name, ret, cost);
             return;
         }
 
-        logger.info(PREFIX + "args:{}[{}]" + RET_PREFIX, name, Arrays.toString(joinPoint.getArgs()),
-            ret, cost);
+        logger.info("{}|{}|{}|{}", name, Arrays.toString(joinPoint.getArgs()), ret, cost);
     }
 }
