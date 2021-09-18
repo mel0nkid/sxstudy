@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.melon.sx.study.mapper.SensitiveWordMapper">
+  <select id="findByWord" resultType="com.melon.sx.study.domain.SensitiveWordDomain">
+    SELECT id, word, msg FROM m_sensitive_words where word = #{word}
+  </select>
+
+  <insert id="insert" parameterType="com.melon.sx.study.domain.SensitiveWordDomain">
+    insert into m_sensitive_words(id, word, msg)
+    values (#{id}, #{word}, #{msg})
+  </insert>
+
+
+</mapper>

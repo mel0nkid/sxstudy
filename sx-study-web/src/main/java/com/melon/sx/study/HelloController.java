@@ -3,6 +3,7 @@ package com.melon.sx.study;
 import cn.melonkid.commons.lang.parser.JSONUtil;
 import com.melon.sx.study.dao.SensitiveWordDao;
 import com.melon.sx.study.domain.SensitiveWordDomain;
+import com.melon.sx.study.mapper.SensitiveWordMapper;
 import com.melon.sx.study.onew.CibaService;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class HelloController {
 
   @Autowired
   private CibaService cibaService;
+
+  @Autowired
+  private SensitiveWordMapper sensitiveWordMapper;
 
   @RequestMapping("/hello")
   @ResponseBody
@@ -72,8 +76,8 @@ public class HelloController {
     String word = UUID.randomUUID().toString().substring(0,5);
     wordDomain.setWord(word);
     wordDomain.setMsg("这是测试数据:"+word);
-    wordDao.insert(wordDomain);
-    wordDomain = wordDao.findByWord(word);
+    sensitiveWordMapper.insert(wordDomain);
+    wordDomain = sensitiveWordMapper.findByWord(word);
     System.out.println(JSONUtil.toJSONString(wordDomain));
     return "db";
   }

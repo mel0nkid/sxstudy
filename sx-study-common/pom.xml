@@ -11,5 +11,11 @@
 
     <artifactId>sx-study-common</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
